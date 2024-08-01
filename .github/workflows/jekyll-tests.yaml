@@ -1,0 +1,30 @@
+---
+name: Jekyll Tests
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.5
+      - name: Jekyll doctor
+        run: |
+          bundle exec jekyll doctor
+      - name: Jekyll build
+        run: | 
+          bundle exec jekyll build
+      - name: Jekyll serve
+        run: | 
+          bundle exec jekyll serve &
+      - name: Site test
+          curl http://127.0.0.1:4000 -si | grep -E '200 OK' || false
+ 

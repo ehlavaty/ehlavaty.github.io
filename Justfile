@@ -6,3 +6,6 @@ build:
 
 serve:
   bundle exec jekyll serve
+
+doctor:
+  bundle exec jekyll doctor
