@@ -26,5 +26,6 @@ jobs:
         run: | 
           bundle exec jekyll serve &
       - name: Site test
+        run: |
           curl http://127.0.0.1:4000 -si | grep -E '200 OK' || false
  
